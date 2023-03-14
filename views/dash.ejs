@@ -1,0 +1,63 @@
+<%- include("./partials/head.ejs")%>
+<body class="black">
+<div class="main">
+    <%- include("./partials/dashNav.ejs") %> 
+    <%- include("./partials/header.ejs") %> 
+    <div class="black">
+      <h4 class="white-text center-align">
+        Click on a Beat and Have a Listen
+      </h4>
+        <div class="row details-container" id="songsList">
+            <% if (tracks.length>0) { %>
+                <% tracks.forEach(track=>{ %> 
+                    <div class="col s12 m6 l4" >
+                        <a href="dash/<%=track._id%>" class="text-white">
+                            <div class="card grey darken-3 hiddenC" id="grad">
+                                <div class="card-image">
+                                    <img src="/images/200.webp">
+                                    <h2  id="trackTitle" class="card-title"><%= track.title %> </h2>
+                                </div>
+                                <div class="card-content orange cc">
+                                   <span class="btn-large black white-text"><%= track.Likes %> Likes</span>
+                                   <span class="btn-large black white-text"><%= track.comments.length %> comments</span>
+                                </div>
+                            </div>
+                        </a>
+                       
+                    </div>
+                    
+                <% }) %> 
+            <% } else { %>
+                <div class="container">
+                    <div class="preloader-wrapper small active">
+                        <div class="spinner-layer spinner-purple-only">
+                          <div class="circle-clipper left">
+                            <div class="circle"></div>
+                          </div><div class="gap-patch">
+                            <div class="circle"></div>
+                          </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <h2 >
+                        No tracks available at the moment 
+                      </h2>
+                </div>
+
+                
+                
+                <% } %> 
+                <div class="center-align"><%- include("./partials/refresh.ejs") %></div>
+        </div>
+       
+      
+    </div>
+    <%- include("./partials/contacts.ejs") %>
+</div>
+    
+  <script src="/style.js">
+    
+  </script>
+</body>
+</html>

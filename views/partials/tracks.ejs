@@ -1,0 +1,38 @@
+<% if (tracks) { %>           
+    <% tracks.forEach(track=>{ %> 
+        <div class="col s12 m6 l4" >
+            <a href="/dash/<%=track._id%>" class="text-white">
+                <div class="card grey darken-3">
+                        <h2 id="trackTitle" class="card-title"><%= track.title %> </h2>
+                        <div class="card-content orange cc">
+                            <span class="btn-large black white-text"><%= track.Likes %> Likes </span>
+                            <span class="btn-large black white-text"><%= track.comments.length %> Comments </span>
+                         </div>
+                </div>
+            </a>
+        </div>
+        
+    <% }) %>    
+    
+<% } else {%>
+    <div class="left">
+        <span classs="white-text center">
+            Loading tracks...
+        </span>
+    </div>
+    
+    <span class="preloader-wrapper small active left">
+        <div class="spinner-layer spinner-purple-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper ">
+            <div class="circle"></div>
+          </div>
+        </span>
+       
+        
+    
+      
+    <%}%>

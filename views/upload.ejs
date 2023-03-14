@@ -1,0 +1,66 @@
+<%- include("./partials/head.ejs")%>
+<body class="black white-text">
+    <%- include("./partials/nav.ejs") %> 
+<section>
+    <div>
+        <h3 >Dexter</h3>
+        <p class="center-align">I make beats.....</p>
+    </div>
+    <div>
+        <h3 >Leon</h3>
+        <p class="center-align">I make websites blah blah blah</p>
+    </div>
+</section>
+<!-- <div class="center">
+    <form action="/dash" method="POST">
+        <input name="Song" placeholder="choose song"id = "upload" type="file" accept=".mp3 ">
+
+        <button class= "submit" type="submit">Upload</button>
+    </form>
+   
+    <div class="container">
+        <div id="cover">
+
+        </div>
+        <p class="dark-grey text-white" id="title"></p>
+        <p class="dark-grey text-white" id="artist"></p>
+        <p class="dark-grey text-white" id="album"></p>
+        <p class="dark-grey text-white" id="genre"></p>        
+    </div>
+</div>
+
+<script>
+    
+    const jsmediatags = window.jsmediatags;
+    
+    document.querySelector("#upload").addEventListener("change",function capture(event){
+        const file = event.target.files[0];
+
+        jsmediatags.read(file,{
+            onSuccess: function(tag){
+                const data = tag.tags.picture.data;
+                const format = tag.tags.picture.format
+                let base64String = "";
+
+                for(let i = 0;i<data.length;i++)
+                    base64String += String.fromCharCode(data[i]);
+                
+                document.querySelector("#cover").style.backgroundImage = `url(data:${format};base64,${window.btoa(base64String)})`;
+                document.querySelector("#title").textContent = tag.tags.title
+                document.querySelector("#artist").textContent = tag.tags.artist
+                document.querySelector("#album").textContent = tag.tags.album
+                document.querySelector("#genre").textContent = tag.tags.year
+                
+                console.log(tag);
+            },
+            onError: function(error){
+                consol.log(error)
+            }
+        })
+    })
+
+    
+
+</script> -->
+<%-include("./partials/contacts.ejs")%>
+</body>

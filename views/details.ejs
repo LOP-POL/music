@@ -1,0 +1,79 @@
+<%- include("./partials/head.ejs")%>
+<body class="row">
+    <%- include("./partials/nav.ejs") %>
+    <section class="col s12 mainsec row">
+        <%-include("./partials/currentSong.ejs",{result})%>   
+        <div class="more col s12 l6 details-container">
+            <%-include("./partials/tracks",{tracks})%>
+        </div>
+    </section>
+    <section>
+        <%- include("./partials/contacts.ejs")  %> 
+    </section>
+    <script>
+    //      const observer = new IntersectionObserver((entries)=>{
+    //     entries.forEach((entry)=>{
+            
+    //         if(entry.isIntersecting){
+    //             entry.target.classList.add("show")
+    //         }
+    //         else{
+    //             entry.target.classList.remove("show")
+    //         }
+    //     });
+    // })
+
+    // const hiddenElements = document.querySelectorAll(".hiddenC");
+    // hiddenElements.forEach((el)=> observer.observe(el))
+
+        const showComments = document.querySelector(".show-comments")
+        const Comments = document.querySelector(".comments #submitBtn")
+        
+
+        showComments.addEventListener("click",function show(e){
+           
+            if(Comments.style.display == "none"){
+                Comments.style.display = "block"
+                console.log("comments")
+            }
+            else{
+                console.log("no comments")
+                Comments.style.display = "none"
+            }
+        })
+    </script>
+    <script async>
+        
+        const Like = document.querySelector(".like")
+        const LikeColor = document.querySelector(".heart")
+        const badge = document.querySelector(".badge")
+        
+        // const commName = document.getElementById("name").value
+        // const commText = document.getElementById("comment").value
+        // const subBtn = document.getElementById("submitBtn")
+
+        // subBtn.action = window.location.pathname      
+        
+        Like.addEventListener("click",function update(e){
+            console.log("clicked")
+            
+            badge.textContent = "+ 1"
+            // badge.textContent = badge.textContent++
+
+            LikeColor.style.color = "purple"
+
+            const endpoint = `/dash/${Like.dataset.doc}`;
+
+            fetch(endpoint,{
+                method:"PUT"
+            })
+            .then((response)=>{return response.json()})
+            .the(data=>{badge.textContent = "+ 1"})
+            .then(result=>{Like.removeEventListener("click",update)})
+            .catch(err=>console.log(err))
+        })
+
+        
+    </script>
+</body>
+

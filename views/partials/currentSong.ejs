@@ -1,0 +1,68 @@
+<div class="details col s12 l6 row">
+    <% if (result) { %>
+      
+            <div class="details-container card song-card col s12 m6 l6">
+                <div class="card-image">
+                    <img src="/images/tumblr_f103316eb2a444b26b94bcdf9abdeed7_04b4cb96_400.gif" alt="top" class="responsive-img">
+                    <span class="card-title white-text tt">
+                        <%=result.title%>
+                    </span>
+                </div>
+                <div class="card-content">
+                    
+                    <audio src="/dash/:id/audio" controls autoplay></audio>
+                    <p>
+                        <span class="like center" data-doc="<%=result._id %> ">
+                            <i class="material-icons heart orange-text " style="font-size:2.5rem" >favorite</i>
+                            
+                        </span>
+                       
+                        <span class="right show-comments">
+                            <i class="material-icons orange-text" style="font-size:2.5rem">comment</i>
+                        </span>
+                       
+                    </p>
+                    <span class="badge white-text left"></span>
+                </div>
+                <div class="card-action ">
+                    
+                    <span class="white-text center">
+                        <%= result.Likes %> Likes <%=result.comments.length%> Comments
+                    </span>
+                </div>
+            </div> 
+
+            <div class="comments center details-container left-align col s12 m6 l6">
+                <h3 class="comments-title">Comments</h3>
+                <form id="submitBtn" action="/dash/:id" method = "POST" class="comments-title">
+                    <input type="text" id="name" name ="name"placeholder="name/alias " required>
+                    <br>
+                    <input type="text"id ="comment" name="body"  placeholder="Type something" required>
+                    
+                    <button type="submit" class="btn purple"><i class="material-icons orange-text">send</i></button>
+                </form>
+                <% if (result.comments.length>=1) { %>
+                    <% result.comments.forEach(comment=>{%> 
+                        
+                            <div class="commentLet left-align z-depth-3">
+                              
+                                <p class="comm-name orange">
+                                    <%=comment.name%>
+                                </p>
+                                <p class="comm-content">
+                                    <%=comment.body%>
+                                </p>
+                            </div>
+
+                       
+                    <%})%>
+                <% } %>
+            </div>   
+    
+        
+     <%}else{%>
+         <h1>Track not found</h1>
+        
+     <%}%>
+
+</div>
